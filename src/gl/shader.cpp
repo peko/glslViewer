@@ -160,6 +160,14 @@ GLuint Shader::compileShader(const std::string& _src, const std::vector<std::str
             "uniform vec2 u_resolution;\n"
             "#define iResolution vec3(u_resolution, 1.0)\n"
             "\n";
+        
+        if (find_id(_src, "iChannel0")) {
+            prolog +=
+                "uniform sampler2D u_tex0;\n"
+                "#define iChannel0 u_tex0\n"
+                "\n";
+        }
+        
         m_time = find_id(_src, "iTime");
         if (m_time) {
             prolog +=
